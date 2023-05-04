@@ -7,7 +7,7 @@ from .models import *
 # Create your views here.
 def main(request):
     all_video = Video.objects.all()
-    context = {'first_video': all_video[0].data}
+    context = {'first_video': all_video[0]}
     return render(request, 'youtube_comment/main.html', context)
 
 def detail(request):
