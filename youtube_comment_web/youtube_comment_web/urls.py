@@ -19,5 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("yotube_comment/", include('youtube_comment.urls'))
+    path("youtube_comment/", include('youtube_comment.urls'))
 ]
