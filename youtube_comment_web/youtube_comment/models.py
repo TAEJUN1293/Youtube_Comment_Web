@@ -36,7 +36,7 @@ class Video(models.Model):
     id = models.CharField(max_length=20, primary_key=True, editable=False)
     thumbnail_url = models.URLField(max_length=200)
     title = models.CharField(max_length=150)
-    url = models.URLField(max_length=200)
+    url = models.URLField(max_length=50)
     count_of_view = models.PositiveBigIntegerField(default=0)
     count_of_comment = models.PositiveBigIntegerField(default=0)
     categories = models.ManyToManyField('Category', through='Trending')
@@ -47,8 +47,8 @@ class Comment(models.Model):
     video_id(FK): varchar(20), 연관된 video
     comment: TEXT, 댓글 내용
     """
-    video_id = models.ForeignKey('Video', on_delete=models.CASCADE, null=True)
-    comment = models.TextField(blank=True, null=True)
+    video_id = models.ForeignKey('Video', on_delete=models.CASCADE)
+    comment = models.TextField()
 
 class Keyword(models.Model):
     """
@@ -57,8 +57,8 @@ class Keyword(models.Model):
     keyword: TEXT, 띄어쓰기로 구분된 문자열
     create_time: 생성일
     """
-    video_id = models.OneToOneField('Video', on_delete=models.CASCADE, null=True)
-    keyword = models.TextField(blank=True, null=True)
+    video_id = models.OneToOneField('Video', on_delete=models.CASCADE)
+    keyword = models.TextField()
     create_time = models.DateTimeField(default=timezone.now)
 
 class Trending(models.Model):
