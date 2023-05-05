@@ -1,8 +1,0 @@
-<h1><img src="../../youtube_comment_web\db_hub\images\test1.png" style="width:90px; height:50px;" >  인기 급상승</h1><br>
-
-<h2>
-{% for w in word_clouds %}
-    {{  w.category_id.category  }} 
-    <img src="{{  w.img_src.path  }}" style=" width:300px; height:300px;">
-{% endfor %}
-</h2>
