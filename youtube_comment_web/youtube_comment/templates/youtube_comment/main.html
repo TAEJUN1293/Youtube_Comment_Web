@@ -1,7 +1,23 @@
-<h1><img src='../static/img/youtube_logo.png' style="width:80px; height:80px;">    인기 급상승</h1><br>
-<h2>
-{% for w in word_clouds %}
-    {{  w.category_id.category  }}
-    <img src="{{  w.img_src.path  }}" style=" width:300px; height:300px;">
-{% endfor %}
-</h2>
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>main</title>
+    <link href="{% static 'css/style2.css' %}" rel="stylesheet" />
+</head>
+<body>
+    <div class="main_title">
+            <img src="{% static 'img/youtube_logo.png' %}"  style=" width:90px; height:90px;">
+            <h2>인기급상승 </h2>
+    </div>
+    <div class = "category_list">
+        {% for w in word_clouds %}
+        <a href="detail?category={{w.category_id.id}}" class = "category">
+        <img src="{{  w.img_src.url  }}" style=" width:300px; height:300px;">
+        <div class = "category_name">
+        {{  w.category_id.category  }}</div>
+        {% endfor %}
+    </div>
+</body>
+</html>
