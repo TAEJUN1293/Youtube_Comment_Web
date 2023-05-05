@@ -8,7 +8,7 @@ class Category(models.Model):
     category: varchar(20), category 이름 (ex: 최신)
     videos: 인기 급상승 해당 카테고리 영상 목록 (video id 값)
     """
-    id = models.CharField(max_length=20, primary_key=True, editable=False)
+    id = models.CharField(max_length=20, primary_key=True)
     category = models.CharField(max_length=20)
     videos = models.ManyToManyField('Video', through='Trending')
 
@@ -33,7 +33,7 @@ class Video(models.Model):
     count_of_comment: INT, 댓글 수
     categories: 연관된 인기 급상승 카테고리 목록
     """
-    id = models.CharField(max_length=20, primary_key=True, editable=False)
+    id = models.CharField(max_length=20, primary_key=True)
     thumbnail_url = models.URLField(max_length=200)
     title = models.CharField(max_length=150)
     url = models.URLField(max_length=50)
