@@ -6,9 +6,10 @@ from .models import *
 
 # Create your views here.
 def main(request):
-    all_video = Video.objects.all()
-    context = {'first_video': all_video[0]}
+    cloud_list =WordCloud.objects.all()
+    context = {'word_clouds': cloud_list}
     return render(request, 'youtube_comment/main.html', context)
+
 
 def detail(request):
     all_video = Video.objects.all()
