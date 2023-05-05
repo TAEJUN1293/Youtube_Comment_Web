@@ -1,17 +1,47 @@
 .category-title {
+    font-size: 2.4rem;
     font-weight: bold;
-    text-align: center;
 }
 
 .category-tab {
     font-weight: bold;
     text-align: center;
+    height: 3rem;
+}
+
+.inner {
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 
 .video-title {
+    font-size: 1.6rem;
     font-weight: bold;
 }
 
 .img-responsive {
     width: 100%;
+}
+
+.text-field {
+    flex:0 0 auto;
+    width: auto;
+}
+
+
+.top-line {
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: gray;
+}
+
+.bottom-line {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: gray;
+}
+
+.comment-list{
+    max-height: 100px;
+    overflow-y: scroll;
 }

@@ -1,0 +1,22 @@
+.main_title{
+    text-align: center;
+    margin-bottom: 45px;
+}
+.category_list {
+    width: 675px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.category {
+    text-align: center;
+    font-weight: bold;
+    display: block;
+    text-decoration :none;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.category_name {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}

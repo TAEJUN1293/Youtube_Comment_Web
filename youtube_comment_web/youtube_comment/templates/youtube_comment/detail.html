@@ -9,29 +9,35 @@
     <script src="{% static 'js/bootstrap.min.js'%}"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container" style="margin-top: 1%;margin-bottom: 1%;">
         <div class="row">
-            <div class="col-sm-1">
+            <div class="col-sm-1" onclick="location.href='/youtube_comment'">
                 <img class="img-responsive" src="{% static 'img/youtube_logo.png' %}">
             </div>
-            <div class="col">
-                {% if category%}
-                <span class="category-title">인기 급상승 > {{category}}</span>
-                {% else %}
-                <span class="category-title">인기 급상승</span>
-                {% endif %}
+            {% if category%}
+            <div class="col category-title" onclick="location.href='/youtube_comment/detail?category={{category.id}}'">
+                <span style="vertical-align: middle;">인기 급상승 > {{category.category}}</span>
             </div>
+            {% else %}
+            <div class="col category-title" onclick="location.href='/youtube_comment/detail/'">
+                <span style="vertical-align: middle;">인기 급상승</span>
+            </div>
+            {% endif %}
         </div>
+    </div>
+    <div class="container bottom-line">
         <div class="row">
             {% for category in category_list %}
-            <div class="col-1 category-tab">{{category.category}}</div>
+            <div class="col-sm-1 category-tab" onclick="location.href='/youtube_comment/detail?category={{category.id}}'" style="vertical-align: middle;">
+                <span style="vertical-align: middle;">{{category.category}}</span>
+            </div>
             {% endfor %}
         </div>
     </div>
-    {% if video_list%}
     <div class="container">
-        {% for video in video_list %}
-            <div class="row">
+        {% if video_list%}
+        {% for video, comment_list, keyword_list in video_list %}
+            <div class="row inner bottom-line">
                 <div class="col-4">
                     <img class="img-responsive" src="{{ video.thumbnail_url }}">
                 </div>
@@ -40,17 +46,45 @@
                         <div class="row">
                             <div class="video-title">{{video.title}}</div>
                         </div>
-                        <div class="row">
-                            <div><strong>조회수: </strong>{{video.count_of_view}}</span></div>
-                            <div><strong>댓글 수: </strong>{{video.count_of_comment}}</span></div>
+                        <div class="row inner">
+                            <div class="text-field"><strong>조회수: </strong>{{video.count_of_view}}</div>
+                            <div class="text-field"><strong>댓글 수: </strong>{{video.count_of_comment}}</div>
+                        </div>
+                        <div class="row inner">
+                            <div>
+                                {% for keyword in keyword_list %}
+                                <button type="button" class="btn btn-primary"" disabled>{{ keyword }}</button>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                        <div class="row accordion" id="commentList">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="commentItem">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#commentDetail" aria-expanded="true" aria-controls="commentDetail">
+                                    <span>수집한 댓글 ({{ comment_list|length }} 개)</span>
+                                </button>
+                                </h2>
+                                <div id="commentDetail" class="accordion-collapse collapse show" aria-labelledby="commentItem" data-bs-parent="#commentList">
+                                <div class="accordion-body comment-list">
+                                    {% if comment_list|length > 0 %}
+                                    {% for comment in comment_list %}
+                                    <div class="text-field inner bottom-line">{{comment.comment}}</div>
+                                    {% endfor %}
+                                    {% else %}
+                                    <span>댓글을 수집할 수 없습니다.</span>
+                                    {% endif %}
+                                </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         {% endfor %}
+        {% else %}
+        <p style="text-align: center; margin-top: 1%;">동영상을 찾을 수 없습니다.</p>
+        {% endif %}
     </div>
-    {% else %}
-    <p>no videos</p>
-    {% endif %}
 </body>
 </html>
